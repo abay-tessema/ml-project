@@ -5,6 +5,7 @@ from src.exception import CustomException
 from src.logger import logging
 from dataclasses import dataclass
 import pandas as pd
+from src.components.data_transformation import DataTransformation,DataTransformationConfig
 
 @dataclass
 class DataIngestionConfig:
@@ -39,4 +40,6 @@ class DataIngestion:
 
 if __name__ == '__main__':
     obj=DataIngestion()
-    obj.initiate_data_ingestion()
+    train_path,test_path=obj.initiate_data_ingestion()
+    data_transformation=DataTransformation()
+    train_arr,test_arr,preprocessing_obj_path=data_transformation.initiate_data_transformation(train_path,test_path)
